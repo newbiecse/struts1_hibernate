@@ -12,7 +12,7 @@
     <title>Demo</title>
 
     <!-- Bootstrap -->
-    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 	<style>
 		#tr-template{
 			display: none;
@@ -190,10 +190,10 @@
 	</div>	
 	
 	
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/validator.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/userForm.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/usersListContainer.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="js/validator.js"></script>
+	<script src="js/userForm.js"></script>
+	<script src="js/usersListContainer.js"></script>
   </body>
 </html>
