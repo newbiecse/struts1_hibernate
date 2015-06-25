@@ -133,17 +133,18 @@
 	
 	  <div class="modal-dialog">
 		<div class="modal-content">
-			<form id="userForm" role="form" data-toggle="validator">
+			<form id="userForm" role="form" data-toggle="validator" action="http://localhost:8080/Struts1-Hibernate-XML/user.do?dispatch=addUserJson">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">User form</h4>
 			  </div>
 			  <div class="modal-body">
 					
+					  <input type="hidden" value="-1" id="txtUserId" name="id" />
 					
 					  <div class="form-group">
 						<label for="txtName">Username</label>
-						<input type="text" class="form-control" id="txtName" placeholder="txtName" data-minlength="8" data-minlength-error="Name at least 8 characters" required />
+						<input type="text" name="name" class="form-control" id="txtName" placeholder="txtName" data-minlength="5" data-minlength-error="Name at least 8 characters" required />
 						<div class="help-block with-errors"></div>
 					  </div>
 				
@@ -157,7 +158,7 @@
 					  
 					  <div class="form-group">
 						<label for="txtAge">Age</label>
-						<input type="text" class="form-control" id="txtAge" placeholder="Age" data-minlength="10" data-minlength-error="Age at least 10 characters" required />
+						<input type="text" name="age" class="form-control" id="txtAge" placeholder="Age" required />
 						<div class="help-block with-errors"></div>
 					  </div>				  
 							

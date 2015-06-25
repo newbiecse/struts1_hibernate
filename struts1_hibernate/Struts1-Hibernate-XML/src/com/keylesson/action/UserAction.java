@@ -83,7 +83,7 @@ public class UserAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		List users = new UserDAO().getListUsers();
-		response.setContentType("JSON");
+		response.setContentType("application/json");
 
 		PrintWriter out = null;
 		
@@ -99,7 +99,7 @@ public class UserAction extends DispatchAction {
 						
 			out = response.getWriter();
 			
-			out.println(o.toString());
+			out.write(o.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -140,6 +140,23 @@ public class UserAction extends DispatchAction {
 			out.close();
 		}
 
+		return null;
+	}	
+	
+	public ActionForward addUserJson(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		UserForm userForm = (UserForm) form;
+		UserDAO dao = new UserDAO();
+		
+		if(userForm.getId() != null) {
+			if(userForm.getId() > 0) {
+				dao.update(userForm);
+			} else {
+				dao.createUser(userForm.getName(), userForm.getAge());
+			}
+		}
+		
 		return null;
 	}	
 }
