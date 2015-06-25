@@ -95,8 +95,8 @@
 				
 					<tr id="tr-template" data-userId="0">
 						<td class="td-userId">1</td>
-						<td class="td-username">user1</td>
-						<td class="td-email">user1@abcv.com</td>
+						<td class="td-name">user1</td>
+						<td class="td-age">user1@abcv.com</td>
 						<td>
 							<button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Details</button>
 							<button type="button" class="btn btn-warning btn-sm btn-edit" data-toggle="modal" data-target="#userFormModal" data-userId="1"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</button>
@@ -108,7 +108,7 @@
 						<logic:iterate name="users" id="user">
 							<tr data-userId="<bean:write name="user" property="id" />">
 								<td class="td-userId"><bean:write name="user" property="id" /></td>
-								<td class="td-username"><bean:write name="user" property="name" /></td>
+								<td class="td-name"><bean:write name="user" property="name" /></td>
 								<td class="td-age"><bean:write name="user" property="age" /></td>
 								<td>
 									<button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Details</button>
@@ -142,20 +142,22 @@
 					
 					
 					  <div class="form-group">
-						<label for="txtUsername">Username</label>
-						<input type="text" class="form-control" id="txtUsername" placeholder="Username" data-minlength="8" data-minlength-error="Username at least 8 characters" required />
+						<label for="txtName">Username</label>
+						<input type="text" class="form-control" id="txtName" placeholder="txtName" data-minlength="8" data-minlength-error="Name at least 8 characters" required />
 						<div class="help-block with-errors"></div>
 					  </div>
-					  
+				
+					  <!--  	  
 					  <div class="form-group">
 						<label for="txtEmail">Email</label>
 						<input type="email" class="form-control" id="txtEmail" placeholder="Email" data-minlength="8" data-minlength-error="Email at least 8 characters" required />
 						<div class="help-block with-errors"></div>
 					  </div>
+					  -->
 					  
 					  <div class="form-group">
-						<label for="txtFullname">Fullname</label>
-						<input type="text" class="form-control" id="txtFullname" placeholder="Fullname" data-minlength="10" data-minlength-error="Fullname at least 10 characters" required />
+						<label for="txtAge">Age</label>
+						<input type="text" class="form-control" id="txtAge" placeholder="Age" data-minlength="10" data-minlength-error="Age at least 10 characters" required />
 						<div class="help-block with-errors"></div>
 					  </div>				  
 							

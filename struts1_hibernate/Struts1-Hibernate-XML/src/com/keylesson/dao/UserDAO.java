@@ -97,6 +97,23 @@ public class UserDAO {
 			System.err.println("Error getting Users :" + e);
 			session.getTransaction().rollback();
 		}
-	}	
+	}
 	
+	public User findById(int userId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		User user = null;
+		try {
+			session.beginTransaction();
+//			String sql = String.format("select * from User where id=%d ", userId);
+			String sql = String.format("from User where id=%d ", userId);
+			user = (User) session
+					.createQuery(sql)
+					.list().get(0);
+//			session.getTransaction().commit();
+		} catch (Exception e) {
+			System.err.println("Error getting Users :" + e);
+			session.getTransaction().rollback();
+		}
+		return user;
+	}	
 }

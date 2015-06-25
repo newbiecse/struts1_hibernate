@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$userDeleteForm = $("#userDeleteForm");
 	
 	// get list user
-	renderListUsers($userList);
+//	renderListUsers($userList);
 	
 	// handle 4 add button
 	$("#btn-add").on("click", function(){
@@ -39,11 +39,16 @@ $(document).ready(function(){
 */
 function getUsers() {
 	var listUsers = new Array();
-	var user1 = {userId: 1, username: "user1", email: "user1@abcv.com", fullname: "A1"};
-	var user2 = {userId: 2, username: "user2", email: "user2@abcv.com", fullname: "A2"};
+	$.ajax({
+		type: "GET",
+		async: false,
+		url: "http://localhost:8080/Struts1-Hibernate-XML/user.do?dispatch=indexUsersJson",
+		cache: false,
+		success: function(data){
+			listUsers = data;
+		}
+	});	
 	
-	listUsers.push(user1);
-	listUsers.push(user2);
 	return listUsers;
 }
 
@@ -64,14 +69,13 @@ function renderListUsers($domTable) {
 			
 			// process display
 			$rowClone.removeAttr('id');
-			$rowClone.attr('data-userId', user.userId);
+			$rowClone.attr('data-userId', user.id);
 			$rowClone.show();
 			
 			// render data
-			$rowClone.find(".td-userId").text(user.userId);
-			$rowClone.find(".td-username").text(user.username);
-			$rowClone.find(".td-email").text(user.email);
-			$rowClone.find(".td-fullname").text(user.fullname);
+			$rowClone.find(".td-userId").text(user.id);
+			$rowClone.find(".td-name").text(user.name);
+			$rowClone.find(".td-age").text(user.age);
 			
 			$tbody.append($rowClone);
 		});
@@ -82,11 +86,19 @@ function renderListUsers($domTable) {
 *	description: get detail user by id's user
 */
 function getUser(userId) {
-	return {
-		username: "user1",
-		email: "user1@abcv.com",
-		fullname: "A1",
-	}
+	var user = null;
+	$.ajax({
+		type: "GET",
+		async: false,
+		url: "http://localhost:8080/Struts1-Hibernate-XML/user.do?dispatch=getUserJson",
+		cache: false,
+		success: function(data){
+			user = data;
+			alert(data);
+		}
+	});
+	
+	return user;
 }
 
 
@@ -98,9 +110,8 @@ function renderValue4UserForm(userId, $userForm) {
 	var user = getUser(userId);
 	
 	// set values
-	$userForm.find("#txtUsername").val(user.username);
-	$userForm.find("#txtEmail").val(user.email);
-	$userForm.find("#txtFullname").val(user.fullname);
+	$userForm.find("#txtName").val(user.name);
+	$userForm.find("#txtAge").val(user.age);
 }
 
 

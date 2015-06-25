@@ -4,7 +4,8 @@
 <%@taglib uri="http://jakarta.apache.org/struts/tags-html" prefix="html"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link href="${pageContext.request.contextPath}/styles/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 	<ul>

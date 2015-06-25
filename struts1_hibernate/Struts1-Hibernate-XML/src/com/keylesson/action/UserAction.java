@@ -17,6 +17,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.keylesson.dao.UserDAO;
 import com.keylesson.form.UserForm;
+import com.keylesson.persistence.User;
 
 public class UserAction extends DispatchAction {
 
@@ -108,4 +109,37 @@ public class UserAction extends DispatchAction {
 
 		return null;
 	}
+	
+	
+	public ActionForward getUserJson(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		UserDAO dao = new UserDAO();
+		User user = dao.findById(1);
+		response.setContentType("application/json");
+
+		PrintWriter out = null;
+		
+		try {			
+
+			
+			Gson gson = new Gson();
+			
+//			JsonObject o = new JsonObject();
+//			o.add("user", jsonElement);
+			
+			String userJson = gson.toJson(user);
+						
+			out = response.getWriter();
+			
+			out.write(userJson);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			out.flush();
+			out.close();
+		}
+
+		return null;
+	}	
 }
