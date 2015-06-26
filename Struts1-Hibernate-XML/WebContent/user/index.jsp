@@ -144,21 +144,21 @@
 					
 					  <div class="form-group">
 						<label for="txtName">Name</label>
-						<input type="text" name="name" class="form-control" id="txtName" placeholder="Name" data-minlength="5" data-minlength-error="Name at least 8 characters" required />
+						<input type="text" name="name" class="form-control" id="txtName" placeholder="Name" data-minlength="5" data-minlength-error="Name at least 5 characters" required />
 						<div class="help-block with-errors"></div>
 					  </div>
 				
 					  <!--  	  
 					  <div class="form-group">
 						<label for="txtEmail">Email</label>
-						<input type="email" class="form-control" id="txtEmail" placeholder="Email" data-minlength="8" data-minlength-error="Email at least 8 characters" required />
+						<input type="email" class="form-control" id="txtEmail" placeholder="Email" data-minlength="5" data-minlength-error="Email at least 5 characters" required />
 						<div class="help-block with-errors"></div>
 					  </div>
 					  -->
 					  
 					  <div class="form-group">
 						<label for="txtAge">Age</label>
-						<input type="text" name="age" class="form-control" id="txtAge" placeholder="Age" required />
+						<input type="number" name="age" class="form-control" id="txtAge" placeholder="Age" required />
 						<div class="help-block with-errors"></div>
 					  </div>				  
 							

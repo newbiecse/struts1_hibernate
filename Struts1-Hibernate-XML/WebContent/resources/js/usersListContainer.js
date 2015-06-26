@@ -1,4 +1,4 @@
-$(document).ready(function(){
+//$(document).ready(function(){
 	// doms
 	$userList = $("#userList");
 	$userForm = $("#userForm");	
@@ -14,13 +14,15 @@ $(document).ready(function(){
 	});
 	
 	// handle 4 edit button
-	$userList.find(".btn-edit").on("click", function(){
+//	$userList.find(".btn-edit").on("click", function(){
+	$userList.on("click", ".btn-edit", function(){
 		var userId = $(this).closest("tr").attr("data-userId");
 		renderValue4UserForm(userId, $userForm);
 	});
 	
 	// handle 4 delete button
-	$userList.find(".btn-delete").on("click", function(){
+//	$userList.find(".btn-delete").on("click", function(){
+	$userList.on("click", ".btn-delete", function(){
 		var userId = $(this).closest("tr").attr("data-userId");
 		renderValue4UserDeleteForm(userId, $userDeleteForm);
 	});	
@@ -31,12 +33,15 @@ $(document).ready(function(){
     });
 	
 	// handle submit form
-	$userForm.submit(function(event){
-		 /* stop form from submitting normally */
-		event.preventDefault();
+	$userForm.validator().on('submit', function(event){
+		/* stop form from submitting normally */
+		if (!event.isDefaultPrevented()) {
+			// submit
+			doSubmitForm($userForm);			
+		}
 		
-		// submit
-		doSubmitForm($userForm);
+		/* stop form from submitting normally */
+		event.preventDefault();
 	});
 	
 
@@ -50,7 +55,7 @@ $(document).ready(function(){
 	});
 	
 	
-});
+//});
 
 
 /**
