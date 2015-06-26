@@ -103,6 +103,7 @@ function getUser(userId) {
 	var user = null;
 	$.ajax({
 		type: "GET",
+		data: "id=" + userId,
 		async: false,
 		url: "http://localhost:8080/Struts1-Hibernate-XML/user.do?dispatch=getUserJson",
 		cache: false,

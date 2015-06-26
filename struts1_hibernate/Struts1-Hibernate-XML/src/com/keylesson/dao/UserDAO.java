@@ -66,15 +66,23 @@ public class UserDAO {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			
-			String sql = String.format("update User set name='%s', age=%d where id=%d ",
-					userForm.getName(),
-					userForm.getAge(),
-					userForm.getId());
+			User user = this.findById(userForm.getId());
+			user.setName(userForm.getName());
+			user.setAge(userForm.getAge());
 			
-			SQLQuery sqlQuery = session.createSQLQuery(sql);
-			sqlQuery.executeUpdate();			
-			
+			session.saveOrUpdate(user);
 			session.getTransaction().commit();
+
+			
+//			String sql = String.format("update from User set name='%s', age=%d where id=%d ",
+//					userForm.getName(),
+//					userForm.getAge(),
+//					userForm.getId());
+//			
+//			SQLQuery sqlQuery = session.createSQLQuery(sql);
+//			sqlQuery.executeUpdate();			
+//			
+//			session.getTransaction().commit();
 		} catch (Exception e) {
 			System.err.println("Error getting Users :" + e);
 			session.getTransaction().rollback();
@@ -87,12 +95,18 @@ public class UserDAO {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			
-			String sql = String.format("delete User where id=%d ", id);
+			User user = this.findById(id);
 			
-			SQLQuery sqlQuery = session.createSQLQuery(sql);
-			sqlQuery.executeUpdate();			
-			
+			session.delete(user);
 			session.getTransaction().commit();
+			
+			
+//			String sql = String.format("delete User where id=%d ", id);
+//			
+//			SQLQuery sqlQuery = session.createSQLQuery(sql);
+//			sqlQuery.executeUpdate();			
+//			
+//			session.getTransaction().commit();
 		} catch (Exception e) {
 			System.err.println("Error getting Users :" + e);
 			session.getTransaction().rollback();

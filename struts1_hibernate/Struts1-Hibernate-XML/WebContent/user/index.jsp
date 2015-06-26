@@ -183,7 +183,7 @@
 				<h5>Are you sure delete this user?</h5>
 			</div>
 			<div class="modal-footer">
-				<form id="userDeleteForm" action="urlDelete?userId=-1">
+				<form id="userDeleteForm" action="http://localhost:8080/Struts1-Hibernate-XML/user.do?dispatch=deleteUserJson">
 					<button type="button" class="btn btn-success btn-sm" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"><span> No</button>
 					<button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"><span> Yes</button>				
 				</form>

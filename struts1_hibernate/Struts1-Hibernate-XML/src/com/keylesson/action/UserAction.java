@@ -64,18 +64,7 @@ public class UserAction extends DispatchAction {
 		
 		List users = dao.getListUsers();
 		request.setAttribute("users", users);
-		
-		// update - hard code
-		UserForm userToUpdate = new UserForm();
-		userToUpdate.setId(1);
-		userToUpdate.setName("BBB");
-		userToUpdate.setAge(2);
-		
-		dao.update(userToUpdate);
-		
-		// DELETE
-		dao.delete(2);
-		
+				
 		return mapping.findForward("index");
 	}
 
@@ -114,8 +103,19 @@ public class UserAction extends DispatchAction {
 	public ActionForward getUserJson(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		String sUserId = request.getParameter("id");
+		int userId = 0;
+		
+		if(sUserId != null) {
+			try {
+				userId = Integer.parseInt(sUserId);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+		
 		UserDAO dao = new UserDAO();
-		User user = dao.findById(1);
+		User user = dao.findById(userId);
 		response.setContentType("application/json");
 
 		PrintWriter out = null;
@@ -155,6 +155,29 @@ public class UserAction extends DispatchAction {
 			} else {
 				dao.createUser(userForm.getName(), userForm.getAge());
 			}
+		}
+		
+		return null;
+	}
+	
+	public ActionForward deleteUserJson(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		UserDAO dao = new UserDAO();
+		
+		String sUserId = request.getParameter("id");
+		int userId = 0;
+		
+		if(sUserId != null) {
+			try {
+				userId = Integer.parseInt(sUserId);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+		
+		if(userId > 0) {
+			dao.delete(userId);
 		}
 		
 		return null;
