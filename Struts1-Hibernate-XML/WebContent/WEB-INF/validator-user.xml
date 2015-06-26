@@ -1,0 +1,15 @@
+<form-validation>
+   <formset>
+      <form name="userForm">
+ 
+		 <field property="name" depends="required">
+		 	<msg name="required" key="error.name.required" />
+		 </field>
+
+		 <field property="age" depends="required">
+		 	<msg name="required" key="error.age.required" />
+		 </field>
+ 
+     </form>
+  </formset>
+</form-validation>

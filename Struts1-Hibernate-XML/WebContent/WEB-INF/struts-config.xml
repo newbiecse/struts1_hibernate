@@ -20,6 +20,20 @@
 		</action>
 	</action-mappings>
 	
+	<!--
 	<message-resources parameter="null" />
+	-->
+	
+	<message-resources parameter="ApplicationResources" />
+	
+	<!--
+	
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn" >
+		<set-property property="pathnames"
+		value="/WEB-INF/validator-rules.xml, /WEB-INF/validator-user.xml"/>
+	 
+	</plug-in>
+	
+	-->
 
 </struts-config>

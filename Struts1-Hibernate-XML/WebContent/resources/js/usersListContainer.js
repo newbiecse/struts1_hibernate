@@ -101,8 +101,10 @@ function renderListUsers($domTable) {
 			
 			// render data
 			$rowClone.find(".td-userId").text(user.id);
-			$rowClone.find(".td-name").text(user.name);
-			$rowClone.find(".td-age").text(user.age);
+			$rowClone.find(".td-email").text(user.email);
+			$rowClone.find(".td-firstName").text(user.firstName);
+			$rowClone.find(".td-lastName").text(user.lastName);
+			$rowClone.find(".td-phone").text(user.phone);
 			
 			$tbody.append($rowClone);
 		});
@@ -138,8 +140,10 @@ function renderValue4UserForm(userId, $userForm) {
 	
 	// set values
 	$userForm.find("#txtUserId").val(userId);
-	$userForm.find("#txtName").val(user.name);
-	$userForm.find("#txtAge").val(user.age);
+	$userForm.find("#txtEmail").val(user.email);
+	$userForm.find("#txtFirstName").val(user.firstName);
+	$userForm.find("#txtLastName").val(user.lastName);
+	$userForm.find("#txtPhone").val(user.phone);
 }
 
 
@@ -162,7 +166,7 @@ function clearValidate($form) {
 		$(this).removeClass('has-error');
 		
 		// clear error message
-		$(this).find('.help-block').html('')
+		$(this).find('.help-block').html('');
 	});
 }
 

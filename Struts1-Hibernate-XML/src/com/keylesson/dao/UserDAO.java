@@ -2,22 +2,23 @@ package com.keylesson.dao;
 
 import java.util.List;
 
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 import com.keylesson.form.UserForm;
 import com.keylesson.hibernate.HibernateUtil;
 import com.keylesson.persistence.User;
+import com.keylesson.utils.Transforms;
 
 public class UserDAO {
 
-	public String createUser(String name, Integer age) {
+	public String createUser(UserForm userForm) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
+			
 			User user = new User();
-			user.setName(name);
-			user.setAge(age);
+			Transforms.transformUserForm2User(user, userForm);
+			
 			session.save(user);
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -67,8 +68,7 @@ public class UserDAO {
 			session.beginTransaction();
 			
 			User user = this.findById(userForm.getId());
-			user.setName(userForm.getName());
-			user.setAge(userForm.getAge());
+			Transforms.transformUserForm2User(user, userForm);
 			
 			session.saveOrUpdate(user);
 			session.getTransaction().commit();

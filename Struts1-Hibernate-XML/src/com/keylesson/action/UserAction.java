@@ -21,6 +21,8 @@ import com.keylesson.persistence.User;
 
 public class UserAction extends DispatchAction {
 
+	private UserDAO userDao;
+	
 	public ActionForward goToSearchPage(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -37,8 +39,8 @@ public class UserAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		UserForm userForm = (UserForm) form;
-		List users = new UserDAO().getUsers(userForm.getName());
-		request.setAttribute("users", users);
+//		List users = new UserDAO().getUsers(userForm.getName());
+//		request.setAttribute("users", users);
 		return mapping.findForward("search");
 	}
 
@@ -46,8 +48,8 @@ public class UserAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		UserForm userForm = (UserForm) form;
-		String result = new UserDAO().createUser(userForm.getName(),
-				userForm.getAge());
+		userDao = new UserDAO();
+		String result = userDao.createUser(userForm);
 		if (result.equals("success")) {
 			request.setAttribute("success", true);
 			userForm.reset();
@@ -60,9 +62,9 @@ public class UserAction extends DispatchAction {
 	public ActionForward indexUsers(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		UserDAO dao = new UserDAO();
+		this.userDao = new UserDAO();
 		
-		List users = dao.getListUsers();
+		List users = this.userDao.getListUsers();
 		request.setAttribute("users", users);
 				
 		return mapping.findForward("index");
@@ -71,7 +73,9 @@ public class UserAction extends DispatchAction {
 	public ActionForward indexUsersJson(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		List users = new UserDAO().getListUsers();
+		this.userDao = new UserDAO();
+		
+		List users = this.userDao.getListUsers();
 		response.setContentType("application/json");
 
 		PrintWriter out = null;
@@ -114,8 +118,8 @@ public class UserAction extends DispatchAction {
 			}
 		}
 		
-		UserDAO dao = new UserDAO();
-		User user = dao.findById(userId);
+		this.userDao = new UserDAO();
+		User user = this.userDao.findById(userId);
 		response.setContentType("application/json");
 
 		PrintWriter out = null;
@@ -147,13 +151,13 @@ public class UserAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		UserForm userForm = (UserForm) form;
-		UserDAO dao = new UserDAO();
+		this.userDao = new UserDAO();
 		
 		if(userForm.getId() != null) {
 			if(userForm.getId() > 0) {
-				dao.update(userForm);
+				this.userDao.update(userForm);
 			} else {
-				dao.createUser(userForm.getName(), userForm.getAge());
+				this.userDao.createUser(userForm);
 			}
 		}
 		
@@ -163,7 +167,7 @@ public class UserAction extends DispatchAction {
 	public ActionForward deleteUserJson(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		UserDAO dao = new UserDAO();
+		this.userDao = new UserDAO();
 		
 		String sUserId = request.getParameter("id");
 		int userId = 0;
@@ -177,7 +181,7 @@ public class UserAction extends DispatchAction {
 		}
 		
 		if(userId > 0) {
-			dao.delete(userId);
+			this.userDao.delete(userId);
 		}
 		
 		return null;

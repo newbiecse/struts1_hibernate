@@ -87,16 +87,19 @@
 			<table id="userList" class="table table-condensed table-bordered table-hover">
 				<thead>
 					<th>Id</th>
-					<th>Name</th>
-					<th>Age</th>
-					<th>Actions</th>
+					<th>Emai</th>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Phone</th>
 				</thead>
 				<tbody>
 				
 					<tr id="tr-template" data-userId="0">
 						<td class="td-userId">1</td>
-						<td class="td-name">user1</td>
-						<td class="td-age">user1@abcv.com</td>
+						<td class="td-email">user1</td>
+						<td class="td-firstName">user1@abcv.com</td>
+						<td class="td-lastName">user1@abcv.com</td>
+						<td class="td-phone">user1@abcv.com</td>
 						<td>
 							<button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Details</button>
 							<button type="button" class="btn btn-warning btn-sm btn-edit" data-toggle="modal" data-target="#userFormModal" data-userId="1"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</button>
@@ -108,8 +111,10 @@
 						<logic:iterate name="users" id="user">
 							<tr data-userId="<bean:write name="user" property="id" />">
 								<td class="td-userId"><bean:write name="user" property="id" /></td>
-								<td class="td-name"><bean:write name="user" property="name" /></td>
-								<td class="td-age"><bean:write name="user" property="age" /></td>
+								<td class="td-email"><bean:write name="user" property="email" /></td>
+								<td class="td-firstName"><bean:write name="user" property="firstName" /></td>
+								<td class="td-lastName"><bean:write name="user" property="lastName" /></td>
+								<td class="td-phone"><bean:write name="user" property="phone" /></td>
 								<td>
 									<button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Details</button>
 									<button type="button" class="btn btn-warning btn-sm btn-edit" data-toggle="modal" data-target="#userFormModal" data-userId="1"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</button>
@@ -143,25 +148,28 @@
 					  <input type="hidden" value="-1" id="txtUserId" name="id" />
 					
 					  <div class="form-group">
-						<label for="txtName">Name</label>
-						<input type="text" name="name" class="form-control" id="txtName" placeholder="Name" data-minlength="5" data-minlength-error="Name at least 5 characters" required />
-						<div class="help-block with-errors"></div>
-					  </div>
-				
-					  <!--  	  
-					  <div class="form-group">
 						<label for="txtEmail">Email</label>
-						<input type="email" class="form-control" id="txtEmail" placeholder="Email" data-minlength="5" data-minlength-error="Email at least 5 characters" required />
+						<input type="email" name="email" class="form-control" id="txtEmail" placeholder="Email" data-minlength="5" data-minlength-error="Name at least 5 characters" required />
 						<div class="help-block with-errors"></div>
 					  </div>
-					  -->
 					  
 					  <div class="form-group">
-						<label for="txtAge">Age</label>
-						<input type="number" name="age" class="form-control" id="txtAge" placeholder="Age" required />
+						<label for="txtFirstName">First Name</label>
+						<input type="text" name="firstName" class="form-control" id="txtFirstName" placeholder="First name" required />
 						<div class="help-block with-errors"></div>
 					  </div>				  
 							
+					  <div class="form-group">
+						<label for="txtLastName">Last Name</label>
+						<input type="text" name="lastName" class="form-control" id="txtLastName" placeholder="Last name" required />
+						<div class="help-block with-errors"></div>
+					  </div>
+					  
+					  <div class="form-group">
+						<label for="txtPhone">Phone</label>
+						<input type="text" name="phone" class="form-control" id="txtPhone" placeholder="Phone" required />
+						<div class="help-block with-errors"></div>
+					  </div>					  							
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"><span> Cancel</button>
